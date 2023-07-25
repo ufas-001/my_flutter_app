@@ -13,10 +13,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14' # Use the version of Node.js that is compatible with Firebase CLI.
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.10.6' # Replace with the desired Flutter version
+          flutter-version: '2.14.0' # Replace with the desired Flutter version
 
       - name: Install dependencies
         run: flutter pub get
